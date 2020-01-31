@@ -1,63 +1,85 @@
-<% include partials/common.ejs %>
+<% include partials/header.ejs %>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
 
 
-<form action="/ngo/signup" method="POST">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username">
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
-    </div>
-    <div class="form-group">
-        <label for="emailId">Email Id</label>
-        <input type="email" class="form-control" id="emailId" name="emailId">
-    </div>
-    <div class="form-group">
-        <label for="phoneNo">Phone Number</label>
-        <input type="text" class="form-control" id="phoneNo" name="phoneNo">
-    </div>
-    <div class="form-group">
-        <label for="pocName">POC Name</label>
-        <input type="text" class="form-control" id="pocName" name="pocName">
-    </div>
-    <div class="form-group">
-        <label for="location">Select Location</label>
-        <input type="text" id="autocomplete" />
+        <div class="card">
+            <div class="card-header">
+                <h3>Register</h3>
+                <div class="d-flex justify-content-end social_icon">
+                </div>
+            </div>
 
-        <script>
-            var input = document.getElementById('autocomplete');
-            var autocomplete = new google.maps.places.Autocomplete(input, { types: ['(cities)'] });
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                var place = autocomplete.getPlace();
-            })
-        </script>
-        <!-- <input type="text" class="form-control" id="pocName" name="pocName" > -->
-        <!-- 
-            <div id="map"></div>
-            <script>
-                function initMap() {
-                    var test = { lat: -25.363, lng: 131.044 };
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 4,
-                        center: test
-                    });
-                    var marker = new google.maps.Marker({
-                        position: test,
-                        map: map
-                    });
-                } 
-            </script>
-            <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlvQWPWtHn1eg7dUPTUyFSgVLf4oyVHe0&callback=initMap">
-                </script> -->
+            <div class="card-body">
+                <form action="/ngo/signup" method="POST">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Name Of The NGO" id="username"
+                            name="username">
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Email ID" id="emailId" name="emailId">
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Name Of POC" id="pocName" name="pocName">
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="number" class="form-control" placeholder="Mobile No" id="phoneNo" name="phoneNo">
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" id="password"
+                            name="password">
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-home"></i></span>
+                        </div>
+                        <input type="text" id="autocomplete" class="form-control" placeholder="Address" />
+
+                        <script>
+                            var input = document.getElementById('autocomplete');
+                            var autocomplete = new google.maps.places.Autocomplete(input, { types: ['(cities)'] });
+                            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                                var place = autocomplete.getPlace();
+                            })
+                        </script>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="btn float-right login_btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-<% include partials/common2.ejs %>
+</div>
+<ul class="slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<% include partials/footer.ejs %>

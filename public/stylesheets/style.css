@@ -3,6 +3,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.buttons {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
 }

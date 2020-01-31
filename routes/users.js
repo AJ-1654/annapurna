@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 var User = require('../models/user');
 var passport = require('passport');
 var authenticate = require('../authenticate');
-var authSchema = require('../models/auth');
 
 var router = express.Router();
 
@@ -39,18 +38,14 @@ router.post('/signup', (req, res, next) => {
         user.save((err, user) => {
           passport.authenticate('user')(req, res, () => {
             if (err) {
-              res.statusCode = 500;
-              res.setHeader('Content-Type', 'application/json');
-              res.json({
-                err: err
-              });
+              res.render('error', {
+                err
+              })
             }
             res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({
-              success: true,
-              status: 'Registration Successful!'
-            });
+            res.render('UserLanding', {
+              user
+            })
           });
         });
       }
@@ -59,14 +54,12 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login',passport.authenticate('user'), (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.json({
-    success: true,
-    status: 'You are successfully logged in!'
-  });
+  res.render('UserLanding',{
+    user : req.user
+  })
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
   if (req.session) {
     req.session.destroy();
     res.clearCookie('session-id');

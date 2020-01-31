@@ -49,11 +49,9 @@ router.post('/signup', (req, res, next) => {
               });
             }
             res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({
-              success: true,
-              status: 'Registration Successful!'
-            });
+            res.render('NGOLanding', {
+              ngo
+            })
           });
         });
       }
@@ -63,13 +61,12 @@ router.post('/signup', (req, res, next) => {
 router.post('/login',passport.authenticate('ngo'), (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
-  res.json({
-    success: true,
-    status: 'You are successfully logged in!'
-  });
+  res.render('NGOLanding',{
+    ngo: req.ngo
+  })
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
   if (req.session) {
     req.session.destroy();
     res.clearCookie('session-id');
