@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+.container{
+height: 100%;
+align-content: center;
+z-index: 1;
+position: relative;
+}
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+.social_icon span{
+font-size: 60px;
+margin-left: 10px;
+color: #FFC312;
+}
+
+.social_icon span:hover{
+color: white;
+cursor: pointer;
+}
+
+.card-header h3{
+color: white;
+}
+
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+
+
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 15s linear infinite; 
+  }
+  
+  .slideshow li:nth-child(1) { 
+    background-image: url(https://www.blueosa.com/wp-content/uploads/2020/01/the-best-top-10-indian-dishes-865x647-731x547.jpg) 
+  }
+  .slideshow li:nth-child(2) { 
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQHdGQMxm2tz6s4h9el5lSTooFDuVncHjzpHT2-3anOpdXew94H);
+    animation-delay: 5s; 
+  }
+  .slideshow li:nth-child(3) { 
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS0RUVqGwfzIA399FCxHmoSwTZTrK2OP2fPXlmWsfhhrQCVmBre);
+    animation-delay: 10s; 
+  }
+  
+  @keyframes imageAnimation { 
+    0% { 
+      opacity: 0; 
+      animation-timing-function: ease-in;
+    }
+    10% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+      opacity: 0
+      animation-timing-function: ease-out;
+    }
+  }
+  
+  .no-cssanimations .slideshow li {
+  opacity: 1;
+  }
+  
+
