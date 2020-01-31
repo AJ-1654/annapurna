@@ -1,30 +1,30 @@
 var express = require('express');
 const bodyParser = require('body-parser');
-var User = require('../models/user');
+var Ngo = require('../models/ngo');
 var passport = require('passport');
 var authenticate = require('../authenticate');
-var authSchema = require('../models/auth');
+
 
 var router = express.Router();
 
 router.get('/login', function (req, res, next) {
-  res.render('userLogin', {
+  res.render('ngoLogin', {
     title: 'Login in'
   })
 });
 
 router.get('/signup', (req, res, next) => {
-  res.render('userSignup', {
+  res.render('ngoSignup', {
     title: 'Sign up'
   })
 });
 
 
 router.post('/signup', (req, res, next) => {
-  User.register(new User({
+  Ngo.register(new Ngo({
     username: req.body.username
   }),
-    req.body.password, (err, user) => {
+    req.body.password, (err, ngo) => {
       if (err) {
         res.statusCode = 500;
         res.setHeader('Content-Type', 'application/json');
@@ -33,11 +33,14 @@ router.post('/signup', (req, res, next) => {
         });
       } else {
         if (req.body.emailId)
-          user.emailId = req.body.emailId;
+          ngo.emailId = req.body.emailId;
         if (req.body.phoneNo)
-          user.phoneNo = req.body.phoneNo;
-        user.save((err, user) => {
-          passport.authenticate('user')(req, res, () => {
+          ngo.phoneNo = req.body.phoneNo;
+        if(req.body.pocName)
+          ngo.pocName = req.body.pocName;
+
+        ngo.save((err,ngo) => {
+          passport.authenticate('ngo')(req, res, () => {
             if (err) {
               res.statusCode = 500;
               res.setHeader('Content-Type', 'application/json');
@@ -57,7 +60,7 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
-router.post('/login',passport.authenticate('user'), (req, res) => {
+router.post('/login',passport.authenticate('ngo'), (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.json({
