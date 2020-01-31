@@ -1,21 +1,10 @@
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<html>
-   <head>
-     <title>Seminors</title>
+ <% include partials/header.ejs %>     
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="/stylesheets/event.css">
 
-   </head>
-   <body class="main-body">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light-nav fixed-top">
-            <a class="navbar-brand text-uppercase">Annapurna</a>
-        </nav>
+     <body class="main-body">
       <section id="post-your-event-tabs">
          <div class="container">
             <h1 class="section-title p-5">Post Your Event Details</h1>
@@ -74,5 +63,7 @@
             </div>
         </footer>
     </section>
-   </body>
-</html>
+
+
+    <% include partials/footer.ejs %>     
+
