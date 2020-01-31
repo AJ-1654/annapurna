@@ -1,0 +1,78 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<html>
+   <head>
+     <title>Seminors</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="/stylesheets/event.css">
+
+   </head>
+   <body class="main-body">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light-nav fixed-top">
+            <a class="navbar-brand text-uppercase">Annapurna</a>
+        </nav>
+      <section id="post-your-event-tabs">
+         <div class="container">
+            <h1 class="section-title p-5">Post Your Event Details</h1>
+                <form class="seminor-login-form ges-location-from">
+                     <div class="form-group">
+                       <label  for="event-title">Event Type</label>
+                        <input type="text" placeholder="Event Type" class="form-control ges-form-control" required autocomplete="off">
+                     </div>
+
+                    <div class="form-group">
+                        <label for="event-start-date">Event Date</label>
+                        <input type='text' placeholder="Event Date (MM/DD/YYYY)" class="form-control ges-form-control date"  id='datetimepicker1' autocomplete="off"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-start-date">Event Time</label>
+                        <input type='text' placeholder="Event Time (0000 hours)" class="form-control ges-form-control date"  id='datetimepicker1' autocomplete="off"/>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="venue-location">Venue Address</label>
+                        <input type="text" placeholder="Full Address" class="form-control ges-form-control" required autocomplete="off">
+                     </div>
+
+                     <div class="btn-check-log text-center">
+                        <!--   <button type="submit" class="btn-check-login">LOGIN</button> -->
+                        <button type="submit" class="btn-check-login ripple-effect">NEXT</button>
+                     </div>
+                  </form>
+               </div>
+      </section>
+     <section>
+        <footer class="bg-seminor-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm d-none d-sm-block">
+                        <div class="footer-menu">
+                            <ul class="footer-menu-ul">
+                                <li><a href="index.html" alt="home">Home</a></li>
+                                <li><a href="about-us.html" alt="About Us">About Us</a></li>
+                                <li><a href="contact-us.html" alt="Contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="footer-sub-div">
+                            <div class="footer-sub">
+                                <div id="subscribeMessage" class="m-t-5"></div>
+                            </div>
+                            <div class="p-1 d-none d-sm-block">
+                                <span class="text-white font-weight-bold">Copyright 2020. All Rights Reserved.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+   </body>
+</html>
