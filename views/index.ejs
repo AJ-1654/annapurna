@@ -1,4 +1,4 @@
-<% include partials/header.ejs %>
+<!-- <% include partials/header.ejs %>
 
 
 <link rel="stylesheet" href="/stylesheets/style.css">
@@ -14,5 +14,29 @@
     </div>
 </div>
 
+
+<% include partials/footer.ejs %> -->
+
+<% include partials/header.ejs %>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/ngoloading.css">
+
+
+<div class = "bg">
+<br> <br>
+<h2 class = "display-4 text-white" style="text-align:center">It is time to rethink how we grow, share and consume our food. Do you have leftovers after a wedding or party? Donate them for a noble cause here!</h2>
+
+<br> <br>
+<div class="container d-flex p-4 justify-content-center">
+    <div class="buttons justify-content-center">
+        <a href="/ngo/login"><button type="button " style = "min-width:750px; min-height:90px" class="btn btn-primary btn-lg ">Login As an NGO</button></a>
+        <br><br>
+        <a href="/users/login"><button type="button" style = "min-width:750px; min-height:90px" class="btn btn-primary btn-lg ">Login As a User</button></a>
+        <br><br>
+        <button type="button" style = "min-width:750px; min-height:90px" class="btn btn-primary btn-lg ">NGOs Near Me</button>
+    </div>
+</div>
+
+</div>
 
 <% include partials/footer.ejs %>
