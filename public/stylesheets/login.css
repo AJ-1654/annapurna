@@ -6,14 +6,14 @@ font-family: 'Numans', sans-serif;
 }
 
 .container{
-height: 100%;
+height: auto;
 align-content: center;
 z-index: 1;
 position: relative;
 }
 
 .card{
-height: 370px;
+height: auto;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -132,10 +132,10 @@ margin-left: 4px;
       opacity: 1;
     }
     20% {
-      opacity: 1
+      opacity: 1;
     }
     30% {
-      opacity: 0
+      opacity: 0;
       animation-timing-function: ease-out;
     }
   }
