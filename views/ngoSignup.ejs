@@ -1,5 +1,19 @@
 <% include partials/header.ejs %>
 
+<style>
+    #map-canvas {
+        width: 500px;
+        height: 400px;
+        float: left;
+    }
+
+    #info-panel {
+        float: left;
+        margin-left: 10px;
+    }
+</style>
+
+
 <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
 
 <div class="container">
@@ -56,20 +70,132 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-home"></i></span>
                         </div>
-                        <input type="text" id="autocomplete" class="form-control" placeholder="Address" />
-
+                        <br>
+                        <script type="text/javascript" //Note: put your own API key in here- replacing
+                            PUT_YOUR_OWN_API_KEY_IN_HERE
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOzs4XL1tODFnw2VEkGNbOfuXRUKhNf1w">
+                            </script>
                         <script>
-                            var input = document.getElementById('autocomplete');
-                            var autocomplete = new google.maps.places.Autocomplete(input, { types: ['(cities)'] });
-                            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                                var place = autocomplete.getPlace();
-                            })
-                        </script>
-                    </div>
+                            // Note: This example requires that you consent to location sharing when
+                            // prompted by your browser. If you see a blank space instead of the map, this
+                            // is probably because you have denied permission for location sharing.
 
-                    <div class="form-group">
-                        <input type="submit" value="Register" class="btn float-right login_btn">
-                    </div>
+                            var map;
+                            var marker;
+                            var laturl;
+                            var lngurl;
+                            var baseurl = "http://augmenting.me/geo/report/?coordinates=";
+                            var linkurl;
+                            var comma = ", ";
+
+                            //set map variables
+                            function initialize() {
+                                var mapOptions = {
+                                    zoom: 18
+                                };
+                                map = new google.maps.Map(document.getElementById('map-canvas'),
+                                    mapOptions);
+
+                                // Try HTML5 geolocation to get location
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(function (position) {
+                                        var pos = new google.maps.LatLng(position.coords.latitude,
+                                            position.coords.longitude);
+
+                                        var marker = new google.maps.Marker({
+                                            map: map,
+                                            position: pos,
+                                            title: 'We are watching you.',
+                                            draggable: true,
+                                            icon: {
+                                                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                                                scale: 10,
+                                                strokeColor: '#FF0000'
+                                            },
+                                        });
+
+                                        //gets the pre-drag lat/long coordinates as a pair
+                                        document.getElementById("latbox").innerHTML = marker.getPosition().lat();
+
+                                        //gets the pre-drag latlong coordinate
+                                        document.getElementById("latbox").value = marker.getPosition().lat();
+                                        document.getElementById("longbox").value = marker.getPosition().lng();
+                                        var laturl = marker.getPosition().lat();
+                                        var lngurl = marker.getPosition().lng();
+                                        var linkurl = baseurl.concat(laturl, comma, lngurl);
+                                        document.getElementById("linkurl").href = linkurl;
+
+                                        //gets the new latlong if the marker is dragged		  
+                                        google.maps.event.addListener(marker, "drag", function () {
+                                            document.getElementById("latbox").value = marker.getPosition().lat();
+                                            document.getElementById("longbox").value = marker.getPosition().lng();
+                                            var laturl = marker.getPosition().lat();
+                                            var lngurl = marker.getPosition().lng();
+                                            var linkurl = baseurl.concat(laturl, comma, lngurl);
+                                            document.getElementById("linkurl").href = linkurl;
+                                        });
+
+                                        map.setCenter(pos);
+                                    }, function () {
+                                        handleNoGeolocation(true);
+                                    });
+                                } else {
+                                    // Browser doesn't support Geolocation
+                                    handleNoGeolocation(false);
+                                }
+
+                            }
+
+                            //if it all fails
+                            function handleNoGeolocation(errorFlag) {
+                                if (errorFlag) {
+                                    var content = 'Error: The Geolocation service failed.';
+                                } else {
+                                    var content = 'Error: Your browser doesn\'t support geolocation.';
+                                }
+
+                                var options = {
+                                    map: map,
+                                    position: new google.maps.LatLng(60, 105),
+                                };
+
+                                var marker = new google.maps.Marker(options);
+                                map.setCenter(options.position);
+
+
+                            }
+
+                            google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+                        </script>
+                        </head>
+
+                        <body>
+                            <div id="map-canvas"></div>
+                            <div class="main">
+                                <h2>Directions</h2>
+                                <!-- <p>If you allowed the site access to your location, you should see it indicated above
+                                    with a red arrow. If you said no but want to change your mind just click <a
+                                        href="http://augmenting.me/water/mapit.html">here</a> and choose "Yes" when
+                                    prompted.</p>
+                                <p>
+                                    You can drag
+                                    the arrow around if you need to adjust the location. Once you get it in the right
+                                    place, click on the button below to start submitting your water quality information.
+                                </p> -->
+                                <a id="linkurl" class="btn" href="http://augmenting.me">NEXT</a>
+                            </div>
+                            <div class="input-group-prepend">
+                                <input id="latbox" type="text" class="form-control" name="lat">
+                            </div>
+                            <div>
+                                <input id="longbox" type="text" class="form-control" name="lon">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Register" class="btn float-right login_btn">
+                            </div>
                 </form>
             </div>
         </div>
@@ -77,9 +203,9 @@
 
     </div>
 </div>
-<ul class="slideshow">
+<!-- <ul class="slideshow">
     <li></li>
     <li></li>
     <li></li>
-</ul>
+</ul> -->
 <% include partials/footer.ejs %>

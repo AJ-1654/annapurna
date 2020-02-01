@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 var Ngo = require('../models/ngo');
 var passport = require('passport');
 var authenticate = require('../authenticate');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 
 var router = express.Router();
@@ -36,10 +38,18 @@ router.post('/signup', (req, res, next) => {
           ngo.emailId = req.body.emailId;
         if (req.body.phoneNo)
           ngo.phoneNo = req.body.phoneNo;
-        if(req.body.pocName)
+        if (req.body.pocName)
           ngo.pocName = req.body.pocName;
+        // if (req.body.lat && req.body.lon) {
 
-        ngo.save((err,ngo) => {
+        //   ngo.geometry = new Schema({
+        //     type : "Point",
+        //     coordinates: [parseFloat(req.body.lat), parseFloat(req.body.lon)]
+        //   })
+        //   // ngo.geometry.insert({ coordinates: [parseFloat(req.body.lat), parseFloat(req.body.lon)] })
+        // }
+
+        ngo.save((err, ngo) => {
           passport.authenticate('ngo')(req, res, () => {
             if (err) {
               res.statusCode = 500;
@@ -58,10 +68,9 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
-router.post('/login',passport.authenticate('ngo'), (req, res) => {
+router.post('/login', passport.authenticate('ngo'), (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.render('NGOLanding',{
+  res.render('NGOLanding', {
     ngo: req.ngo
   })
 });

@@ -1,94 +1,238 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-            <title>annapurna </title>
-      </head>
-    
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <h1>Annapurna</h1>
-            </a>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Contact Us</a>
-                    <a class="nav-item nav-link" href="/users/logout">Logout</a>
-                </div>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>annapurna </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <h1>Annapurna</h1>
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Contact Us</a>
+                <a class="nav-item nav-link" href="/users/logout">Logout</a>
             </div>
-        </nav>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/stylesheets/event.css">
-
-<body class="main-body">
-    <div>
-        <%= user %>
-    </div>
-    <section id="post-your-event-tabs">
-        <div class="container">
-            <h1 class="section-title p-5">Post Your Event Details</h1>
-            <form class="seminor-login-form ges-location-from">
-                <div class="form-group">
-                    <label for="event-title">Event Type</label>
-                    <input type="text" placeholder="Event Type" class="form-control ges-form-control" required
-                        autocomplete="off">
-                </div>
-
-                <div class="form-group">
-                    <label for="event-start-date">Event Date</label>
-                    <input type='text' placeholder="Event Date (MM/DD/YYYY)" class="form-control ges-form-control date"
-                        id='datetimepicker1' autocomplete="off" />
-                </div>
-
-                <div class="form-group">
-                    <label for="event-start-date">Event Time</label>
-                    <input type='text' placeholder="Event Time (0000 hours)" class="form-control ges-form-control date"
-                        id='datetimepicker2' autocomplete="off" />
-                </div>
-
-                <div class="form-group">
-                    <label for="venue-location">Venue Address</label>
-                    <input type="text" placeholder="Full Address" class="form-control ges-form-control" required
-                        autocomplete="off">
-                </div>
-
-                <div class="btn-check-log text-center">
-                    <!--   <button type="submit" class="btn-check-login">LOGIN</button> -->
-                    <button type="submit" class="btn-check-login ripple-effect">NEXT</button>
-                </div>
-            </form>
         </div>
-    </section>
-    <section>
-        <footer class="bg-seminor-footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm d-none d-sm-block">
-                        <div class="footer-menu">
-                            <ul class="footer-menu-ul">
-                                <li><a href="index.html" alt="home">Home</a></li>
-                                <li><a href="about-us.html" alt="About Us">About Us</a></li>
-                                <li><a href="contact-us.html" alt="Contact">Contact</a></li>
-                            </ul>
-                        </div>
+    </nav>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/event.css">
+
+
+    <style>
+        #map-canvas {
+            width: 500px;
+            height: 400px;
+            float: left;
+        }
+
+        #info-panel {
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+
+    <body class="main-body">
+        <div>
+            <%= user %>
+        </div>
+        <section id="post-your-event-tabs">
+            <div class="container">
+                <h1 class="section-title p-5">Post Your Event Details</h1>
+                <form class="seminor-login-form ges-location-from">
+                    <div class="form-group">
+                        <label for="event-title">Event Type</label>
+                        <input type="text" placeholder="Event Type" class="form-control ges-form-control" required
+                            autocomplete="off">
                     </div>
-                    <div class="col-sm">
-                        <div class="footer-sub-div">
-                            <div class="footer-sub">
-                                <div id="subscribeMessage" class="m-t-5"></div>
+
+                    <div class="form-group">
+                        <label for="event-start-date">Event Date</label>
+                        <input type='text' placeholder="Event Date (MM/DD/YYYY)"
+                            class="form-control ges-form-control date" id='datetimepicker1' autocomplete="off" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-start-date">Event Time</label>
+                        <input type='text' placeholder="Event Time (0000 hours)"
+                            class="form-control ges-form-control date" id='datetimepicker2' autocomplete="off" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="venue-location">Venue Address</label>
+                        <input type="text" placeholder="Full Address" class="form-control ges-form-control" required
+                            autocomplete="off">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-home"></i></span>
+                        </div>
+                        <br>
+                        <script type="text/javascript" //Note: put your own API key in here- replacing
+                            PUT_YOUR_OWN_API_KEY_IN_HERE
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOzs4XL1tODFnw2VEkGNbOfuXRUKhNf1w">
+                            </script>
+                        <script>
+                            // Note: This example requires that you consent to location sharing when
+                            // prompted by your browser. If you see a blank space instead of the map, this
+                            // is probably because you have denied permission for location sharing.
+
+                            var map;
+                            var marker;
+                            var laturl;
+                            var lngurl;
+                            var baseurl = "http://augmenting.me/geo/report/?coordinates=";
+                            var linkurl;
+                            var comma = ", ";
+
+                            //set map variables
+                            function initialize() {
+                                var mapOptions = {
+                                    zoom: 18
+                                };
+                                map = new google.maps.Map(document.getElementById('map-canvas'),
+                                    mapOptions);
+
+                                // Try HTML5 geolocation to get location
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(function (position) {
+                                        var pos = new google.maps.LatLng(position.coords.latitude,
+                                            position.coords.longitude);
+
+                                        var marker = new google.maps.Marker({
+                                            map: map,
+                                            position: pos,
+                                            title: 'We are watching you.',
+                                            draggable: true,
+                                            icon: {
+                                                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                                                scale: 10,
+                                                strokeColor: '#FF0000'
+                                            },
+                                        });
+
+                                        //gets the pre-drag lat/long coordinates as a pair
+                                        document.getElementById("latbox").innerHTML = marker.getPosition().lat();
+
+                                        //gets the pre-drag latlong coordinate
+                                        document.getElementById("latbox").value = marker.getPosition().lat();
+                                        document.getElementById("longbox").value = marker.getPosition().lng();
+                                        var laturl = marker.getPosition().lat();
+                                        var lngurl = marker.getPosition().lng();
+                                        var linkurl = baseurl.concat(laturl, comma, lngurl);
+                                        document.getElementById("linkurl").href = linkurl;
+
+                                        //gets the new latlong if the marker is dragged		  
+                                        google.maps.event.addListener(marker, "drag", function () {
+                                            document.getElementById("latbox").value = marker.getPosition().lat();
+                                            document.getElementById("longbox").value = marker.getPosition().lng();
+                                            var laturl = marker.getPosition().lat();
+                                            var lngurl = marker.getPosition().lng();
+                                            var linkurl = baseurl.concat(laturl, comma, lngurl);
+                                            document.getElementById("linkurl").href = linkurl;
+                                        });
+
+                                        map.setCenter(pos);
+                                    }, function () {
+                                        handleNoGeolocation(true);
+                                    });
+                                } else {
+                                    // Browser doesn't support Geolocation
+                                    handleNoGeolocation(false);
+                                }
+
+                            }
+
+                            //if it all fails
+                            function handleNoGeolocation(errorFlag) {
+                                if (errorFlag) {
+                                    var content = 'Error: The Geolocation service failed.';
+                                } else {
+                                    var content = 'Error: Your browser doesn\'t support geolocation.';
+                                }
+
+                                var options = {
+                                    map: map,
+                                    position: new google.maps.LatLng(60, 105),
+                                };
+
+                                var marker = new google.maps.Marker(options);
+                                map.setCenter(options.position);
+
+
+                            }
+
+                            google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+                        </script>
+
+
+                        <body>
+                            <div id="map-canvas"></div>
+                            <div class="main">
+                                <h2>Directions</h2>
+                                <!-- <p>If you allowed the site access to your location, you should see it indicated above
+                                with a red arrow. If you said no but want to change your mind just click <a
+                                    href="http://augmenting.me/water/mapit.html">here</a> and choose "Yes" when
+                                prompted.</p>
+                            <p>
+                                You can drag
+                                the arrow around if you need to adjust the location. Once you get it in the right
+                                place, click on the button below to start submitting your water quality information.
+                            </p> -->
+                                <a id="linkurl" class="btn" href="http://augmenting.me">NEXT</a>
                             </div>
-                            <div class="p-1 d-none d-sm-block">
-                                <span class="text-white font-weight-bold">Copyright 2020. All Rights Reserved.</span>
+                            <div class="input-group-prepend">
+                                <input id="latbox" type="text" class="form-control" name="lat">
+                            </div>
+                            <div>
+                                <input id="longbox" type="text" class="form-control" name="lon">
+                            </div>
+                            <div class="btn-check-log text-center">
+                                <!--   <button type="submit" class="btn-check-login">LOGIN</button> -->
+                                <button type="submit" class="btn-check-login ripple-effect">Submit</button>
+                            </div>
+                </form>
+            </div>
+        </section>
+        <section>
+            <footer class="bg-seminor-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm d-none d-sm-block">
+                            <div class="footer-menu">
+                                <ul class="footer-menu-ul">
+                                    <li><a href="index.html" alt="home">Home</a></li>
+                                    <li><a href="about-us.html" alt="About Us">About Us</a></li>
+                                    <li><a href="contact-us.html" alt="Contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="footer-sub-div">
+                                <div class="footer-sub">
+                                    <div id="subscribeMessage" class="m-t-5"></div>
+                                </div>
+                                <div class="p-1 d-none d-sm-block">
+                                    <span class="text-white font-weight-bold">Copyright 2020. All Rights
+                                        Reserved.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    </section>
+            </footer>
+        </section>
 
 
-    <% include partials/footer.ejs %>
+        <% include partials/footer.ejs %>
